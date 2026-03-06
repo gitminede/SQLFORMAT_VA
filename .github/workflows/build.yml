@@ -1,5 +1,6 @@
 name: Build sqlformat_va.exe
 
+
 on:
   workflow_dispatch:
 
