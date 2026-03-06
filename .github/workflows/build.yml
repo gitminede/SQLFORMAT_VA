@@ -1,11 +1,11 @@
-name: Build SQL Formatter
+name: Build sqlformat_va.exe
 
 on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-windows-exe:
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
@@ -16,17 +16,19 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install build dependency
+        run: python -m pip install --upgrade pip pyinstaller
+
       - name: Validate Python sources
         run: python -m py_compile app.py formatter.py
 
-      - name: Prepare artifact
-        run: |
-          mkdir -p dist
-          cp app.py formatter.py index.html app.js style.css README.md dist/
-          if [ -f .gitignore ]; then cp .gitignore dist/; fi
+      - name: Build sqlformat_va.exe
+        shell: pwsh
+        run: pyinstaller --clean --noconfirm --onefile --name sqlformat_va --add-data "index.html;." --add-data "style.css;." --add-data "app.js;." app.py
 
-      - name: Upload artifact
+      - name: Upload sqlformat_va.exe artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sqlformatter-python-app
-          path: dist/
+          name: sqlformat_va.exe
+          path: dist/sqlformat_va.exe
+          if-no-files-found: error

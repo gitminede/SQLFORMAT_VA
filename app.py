@@ -1,10 +1,18 @@
 import json
+import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from formatter import format_sql
 
-BASE = Path(__file__).parent
+
+def _runtime_base_dir() -> Path:
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+        return Path(sys._MEIPASS)
+    return Path(__file__).parent
+
+
+BASE = _runtime_base_dir()
 
 
 def read_text(name: str) -> str:

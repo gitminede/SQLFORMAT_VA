@@ -1,8 +1,8 @@
 # SQL Formattáló (Python)
 
-A projekt teljesen Python-alapú.
+A projekt Python-alapú SQL formázó, webes felülettel.
 
-## Indítás
+## Lokális indítás
 
 ```bash
 python3 app.py
@@ -10,11 +10,16 @@ python3 app.py
 
 Ezután nyisd meg: `http://127.0.0.1:8080`
 
-## Artifact letöltés
+## Letöltés a felületről
 
-A felületen a **Letöltés artifactként** gomb egy `formatted.sql` fájlt tölt le.
+A **Letöltés artifactként** gomb `formatted.sql` fájlt tölt le.
 
-## Ellenőrzés
+## GitHub Actions build (belső build)
+
+A `.github/workflows/build.yml` workflow kézzel indítható (`workflow_dispatch`) az Actions fülről.
+A futás végeredménye letölthető artifact: **`sqlformat_va.exe`**.
+
+## Lokális ellenőrzés
 
 ```bash
 python3 -m py_compile app.py formatter.py
