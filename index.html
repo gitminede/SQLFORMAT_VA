@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQL Formattáló</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>SQL Formattáló</h1>
+      <p>Bal oldalt: bemenet, jobb oldalt: formázott SQL.</p>
+    </header>
+
+    <main class="layout">
+      <section class="pane">
+        <label for="inputSql">Bemenet</label>
+        <textarea id="inputSql" spellcheck="false" placeholder="Illeszd be ide a nyers SQL scriptet..."></textarea>
+      </section>
+
+      <section class="actions">
+        <button id="formatBtn">Formázás ➜</button>
+        <button id="copyBtn">Kimenet másolása</button>
+      </section>
+
+      <section class="pane">
+        <label for="outputSql">Kimenet</label>
+        <textarea id="outputSql" spellcheck="false" readonly></textarea>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
